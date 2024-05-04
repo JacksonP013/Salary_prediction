@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "salary-prediction-f7578",
+  "private_key_id": "a8488ffa0a90845984d8c31d2362daa6c410ed9f",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDsnWtC6EnTB+vR\np4k47ApNQU5n++sSgAV6Y/Xn6fUH6db7Do2F2IMLOj3Ys9HfsQPBESIKUBu7KMhU\nar8xCLcESLSQ2JuAzKlOuMLBV2mNU5LLHyOkHzK/TJfQel4gJ0OSKxYOwdnA+m5O\n6OBFW0sGLqCa4+8Ik3pA49qb1JMfQAT4MXb9qy7xOgTzcYQJ7OFzB/e+mgMO2PI+\nUAjzzwQXSrPiq/MMW0/KMmWM1DY2WNj27zvHGmGb/P6oDE95amtdcVhDhyeK8HVX\n2AWltu29vmbZ9I5AcHzJw2OcXh+CZuMN0hJpIl1EkBjtYNcJj/1twVsbkn9C+Uy+\n6VJ9MjMLAgMBAAECggEABeMqLBFY5OX+5B87DC4zWMDAkVh0p5KFOwpfBVTjl+gl\nmpGTdo/F6EhGtFb6aIp1rB7KWLStkUvuess9KUcs5ppjLnIf9xB161OFj7H7xQcd\n++0xFyr/jur6TAxUveVm362FcFCPznwXX+HuJ/ZMOOx9aofesWPvWCColoAE48jJ\nFaKRpiCXgHDPWG7iix8cKJxPjD6dUgZzj9ys5uEDX3VOazDqkrN7U8oBSmCV1a3s\nD2yP895dn2baupQuPKRXiRxNM7a0A81P4TrvLdiSv2X8opham/McVNA4Np/F4U+L\nZ8HHJ3iAVQ+w1iOwmUz0HqI+6vt1rubp0uh9q9c44QKBgQD+n5EP3xzVLxtRUHN/\nRE43qtx3nEEk14dETjEXcx63FsVCGAEEv2nBMELBsL9M12C4MOtCXt2EIz1xX/Ox\nN99eT83TNvY2ZG4Z522uTOnA4uWuQ6JlcNjd/jSZLsjAwKzPAM7FJBDyEpn4vcX1\n1Xy04Nl3Yz/UP3zFfcMG/Z6c/wKBgQDt5O0geADNj2pM38ORv7ViB0+wMN6Whxs3\nTuf7M5EtUgzKQaqnZpOsBVFu12Q2C7KRzhTRW/FGe5qWDrQ5pxPrVXYnD7iL3T9s\nn31TP02a9lyWlfTShdm4w07JWomRqTjQjLj0Uk8zD6ENenWb+M2Q1MAVjhXcQIO9\nmfUDcJMN9QKBgQDbBvnq1DriK2ZtWS4xANnjyudhQJlNDtV97WEPUejPCBhhFXLy\n2ZEoLNKP+PFmMTMy3mnRKveULhgxiZ+AB5bucumT0giTm2qWf9x6fhDp6oQ2llmA\nt0TmGUC3sGXiYRuF6aT0MmUdRuEJ9nzuTlm64lxO9aI3evFilR8JyWsCkwKBgQDj\nk/gA8qwZ+hPAHOQzfwlfEQ17yRR3PiKcI4ErP6ani3Gu32kJIcktbBz+A1Hbng8j\nCtnBespzGfXFjaV97cbRf/062wA51NtC58R1qf5suzfR2vzNlLy20yiA2Xr3fMJc\nR/L7z+3yNAZnJXpzTm4hGlXziOyCurkM3caVltEnLQKBgQCATi9zmfvkPps4rlWb\nVZxE6mrrcwO0wHDNOye8SqZ3rsVBo9TRXbp8QbORzToGlD36RFricLFJeeeH4k/F\n6zYiNDXJK9eK4GeGsA5I3sVFJlb0nVv9ruQCbk1o0WKbHQKIKWIROS7nn59SYb7C\nanmXij1RLiOnX78S+FrClTNqsQ==\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-ydz4b@salary-prediction-f7578.iam.gserviceaccount.com",
+  "client_id": "100970246897632125396",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-ydz4b%40salary-prediction-f7578.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
