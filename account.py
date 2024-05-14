@@ -1,8 +1,7 @@
 import streamlit as st
 import firebase_admin
-from firebase_admin import firestore
+from firebase_admin import firestore, auth
 from firebase_admin import credentials
-from firebase_admin import auth
 import json
 import requests
 
@@ -10,6 +9,7 @@ if not firebase_admin._apps:
     cred = credentials.Certificate("salary-prediction-f7578-a8488ffa0a90.json")
     firebase_admin.initialize_app(cred)
 
+db = firestore.client()
 
 def app():
     st.title('Welcome to salary prediction:')
@@ -18,16 +18,16 @@ def app():
         st.session_state.username = ''
     if 'useremail' not in st.session_state:
         st.session_state.useremail = ''
-    if 'signedout' not in st.session_state:
-        st.session_state.signedout = False
-    if 'signout' not in st.session_state:
-        st.session_state.signout = False
+    if 'signedin' not in st.session_state:
+        st.session_state.signedin = False
     if 'email_input' not in st.session_state:
         st.session_state.email_input = ''
     if 'password_input' not in st.session_state:
         st.session_state.password_input = ''
     if 'show_login_form' not in st.session_state:
         st.session_state.show_login_form = True
+    if 'review_text' not in st.session_state:
+        st.session_state.review_text = ''
 
     def sign_up_with_email_and_password(email, password, username=None, return_secure_token=True):
         try:
@@ -96,15 +96,29 @@ def app():
             userinfo = sign_in_with_email_and_password(st.session_state.email_input, st.session_state.password_input)
             st.session_state.username = userinfo['username']
             st.session_state.useremail = userinfo['email']
-            st.session_state.signedout = True
-            st.session_state.signout = True
+            st.session_state.signedin = True
             st.session_state.show_login_form = False  # Hide the login form after successful login
-        except:
-            st.warning('Login Failed')
+            st.experimental_rerun()
+        except requests.exceptions.RequestException as e:
+            st.warning('Login Failed. Please try again later or contact support.')
+        except KeyError as e:
+            st.warning("Incorrect email or password. Please check your credentials and try again.")
+        except Exception as e:
+            if isinstance(e, dict) and 'error' in e and 'message' in e['error']:
+                error_message = e['error']['message']
+                if error_message == 'INVALID_EMAIL':
+                    st.warning("Invalid email. Please check your email address and try again.")
+                elif error_message == 'INVALID_PASSWORD':
+                    st.warning("Incorrect password. Please check your password and try again.")
+                else:
+                    st.warning(f'Login Failed. Error: {error_message}')
+            else:
+                st.warning('Login Failed. Please try again later or contact support.')
+
+
 
     def handle_sign_out():
-        st.session_state.signout = False
-        st.session_state.signedout = False
+        st.session_state.signedin = False
         st.session_state.username = ''
         st.session_state.useremail = ''
         st.session_state.show_login_form = True  # Show the login form after sign out
@@ -117,6 +131,27 @@ def app():
                 st.success("Password reset email sent successfully.")
             else:
                 st.warning(f"Password reset failed: {message}")
+
+    def save_review(user_email, username, review_text):
+        try:
+            doc_ref = db.collection('reviews').document()
+            doc_ref.set({
+                'user_email': user_email,
+                'username': username,
+                'review_text': review_text
+            })
+            st.success("Review submitted successfully!")
+        except Exception as e:
+            st.warning(f"Failed to submit review: {e}")
+
+    def display_reviews():
+        st.subheader("User Reviews")
+        reviews = db.collection('reviews').stream()
+        for review in reviews:
+            review_data = review.to_dict()
+            st.write(f"Username: {review_data['username']}")
+            st.write(f"Review: {review_data['review_text']}")
+            st.write("---")
 
     if st.session_state.show_login_form:  # Show login form only if the flag is set to True
         choice = st.selectbox('Login/Signup', ['Login', 'Sign up'], key="login_choice")  # Add key argument here
@@ -136,12 +171,21 @@ def app():
                 handle_login()
             handle_password_reset()
 
-    if st.session_state.signout:
+    if st.session_state.signedin:
         st.text('Name ' + st.session_state.username)
         st.text('Email id: ' + st.session_state.useremail)
-        if st.button('Sign out', key="signout_button"):  # Add key argument here
+        st.subheader("Submit Your Review")
+        review_text = st.text_area("Write your review here", key="review_text_area")
+        if review_text.strip():  # Check if review text is not empty or contains only whitespace
+            if st.button("Submit Review"):
+                save_review(st.session_state.useremail, st.session_state.username, review_text)
+        else:
+            st.warning("Write something...")
+
+        display_reviews()
+
+        if st.button("Sign out"):
             handle_sign_out()
 
-
-if __name__ == "__main__":
-    app()
+# Run the app
+app()
