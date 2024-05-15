@@ -188,4 +188,5 @@ def app():
             handle_sign_out()
 
 # Run the app
-app()
+if __name__ == "__main__":
+    app()
