@@ -11,8 +11,8 @@ if not firebase_admin._apps:
     cred = credentials.Certificate("salary-prediction-f7578-a8488ffa0a90.json")  # Replace with your service account key path
     firebase_admin.initialize_app(cred)
 
-with open('style.css') as f:
-    st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+# with open('style.css') as f:
+#     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 # Function to load and display image
 def load_image(image_path):
