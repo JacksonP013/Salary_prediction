@@ -124,6 +124,8 @@ def show_predict_page():
         })
 
     # Display data from Firestore in a table
+    
+    st.write("\n\n\n\n\n\n\n\n\n\n\n\n")
     st.write("## Prediction History")
     predictions = db.collection('salary_predictions').get()
     prediction_data = []
