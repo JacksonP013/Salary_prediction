@@ -4,7 +4,8 @@ import numpy as np
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
-
+from sklearn.impute import SimpleImputer
+from sklearn.preprocessing import LabelEncoder
 
 if not firebase_admin._apps:
     # Initialize Firebase Admin SDK
@@ -102,17 +103,21 @@ def show_predict_page():
 
     ok = st.button("Calculate Salary")
     if ok:
+        # Prepare input data
         X = np.array([[country, education_level, experience, job_type, industry_type]])
-        X[:, 0] = le_country.transform(X[:,0])
-        X[:, 1] = le_edlevel.transform(X[:,1])
-        X[:, 3] = le_role.transform(X[:,3])
-        X[:, 4] = le_industry.transform(X[:,4])
+        
+        
+        
+        # Encode categorical variables
+        X[:, 0] = le_country.transform(X[:, 0])
+        X[:, 1] = le_edlevel.transform(X[:, 1])
+        X[:, 3] = le_role.transform(X[:, 3])
+        X[:, 4] = le_industry.transform(X[:, 4])
 
         X = X.astype(float)
-        
-        if np.isnan(X).any():
-            # Handle missing values (e.g., impute with mean)
-            from sklearn.impute import SimpleImputer
+
+        # Handle missing values in input data
+        if np.isnan(X.astype(float)).any():
             imputer = SimpleImputer(strategy='mean')
             X = imputer.fit_transform(X)
 
@@ -146,4 +151,3 @@ def show_predict_page():
 # Run the app
 if __name__ == '__main__':
     show_predict_page()
-
