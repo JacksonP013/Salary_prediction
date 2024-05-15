@@ -109,6 +109,12 @@ def show_predict_page():
         X[:, 4] = le_industry.transform(X[:,4])
 
         X = X.astype(float)
+        
+        if np.isnan(X).any():
+            # Handle missing values (e.g., impute with mean)
+            from sklearn.impute import SimpleImputer
+            imputer = SimpleImputer(strategy='mean')
+            X = imputer.fit_transform(X)
 
         salary = regressor.predict(X)
         st.subheader(f"The estimated salary is ${salary[0]:.2f}")
