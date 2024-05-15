@@ -2,7 +2,6 @@ import streamlit as st
 import firebase_admin
 from firebase_admin import credentials
 from prediction import show_predict_page
-from explore import show_explore_page
 import account
 
 
@@ -31,11 +30,10 @@ sidebar.header('Salary Prediction')
 sidebar.write("The current salary prediction is based on the StackOverflow survey data for 2024. The calculations are not accurate representation of accurate salary values but rather an estimate")
 sidebar.write("Developed by Jackson")
 
-page = sidebar.selectbox("Option", ("🙍‍♂️ Account","💲  Predict", "📊 Explore"))
+page = sidebar.selectbox("Option", ("🙍‍♂️ Account","💲  Predict"))
 
 if page == "🙍‍♂️ Account":
     account.app()
 elif page == "💲  Predict":
     show_predict_page()  # Call show_predict_page from prediction.py
-elif page == "📊 Explore":
-    show_explore_page()
+
